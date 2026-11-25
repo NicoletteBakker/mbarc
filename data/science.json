@@ -4,7 +4,7 @@
       "type": "publication",
       "date": "2027-06-14",
       "title": "Mechanical signatures of cellular behaviour",
-      "image": "/assets/img/science/AMR_blue.png",
+      "image": "assets/img/science/AMR_blue.png",
       "summary": "Published in Nature Biomedical Engineering",
       "link": "#"
     },
@@ -12,7 +12,7 @@
       "type": "conference",
       "date": "2027-04-10",
       "title": "M-BARC at SPIE Photonics Europe",
-      "image": "/assets/img/science/ORG_blue.png",
+      "image": "assets/img/science/ORG_blue.png",
       "summary": "Presentation of the photonic sensing platform",
       "link": "#"
     },
@@ -20,21 +20,21 @@
         "type": "outreach",
         "date": "2027-02-05",
         "title": "Science Outreach Day",
-        "image": "/assets/img/chip_biosensor.png",
+        "image": "assets/img/chip_biosensor.png",
         "summary": "Presentation of M-BARC technologies to students."
     },
     {
     "type": "conference",
     "date": "2027-01-15",
     "title": "Poster at Photonics Conference",
-    "image": "/assets/img/chip_biosensor.png",
+    "image": "assets/img/chip_biosensor.png",
     "summary": "First dissemination of project results."
     },
     {
     "type": "conference",
     "date": "2027-01-15",
     "title": "Poster at Photonics Conference",
-    "image": "/assets/img/chip_biosensor.png",
+    "image": "assets/img/chip_biosensor.png",
     "summary": "First dissemination of project results."
     }
   ]

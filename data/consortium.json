@@ -7,25 +7,25 @@
       "shortName": "VU",
       "country": "Netherlands",
       "role": "Coordinator",
-      "logo": "/assets/logo/VU_logo.png",
+      "logo": "assets/logo/VU_logo.png",
       "participants": [
         {
           "name": "Imran Avci",
           "position": "Project Coordinator",
           "email": "b.i.avci@vu.nl",
-          "photo": "/assets/img/consortium/id1.jpg"
+          "photo": "assets/img/consortium/id1.jpg"
         },
         {
           "name": "Mekky Zaidi",
           "position": "Research Scientist",
           "email": "s.m.zaidi@vu.nl",
-          "photo": "/assets/img/consortium/id2.jpg"
+          "photo": "assets/img/consortium/id2.jpg"
         },
         {
           "name": "Abdusame O. N.Berish",
           "position": "Research Scientist",
           "email": "a.o.n.berish@vu.nl",
-          "photo": "/assets/img/consortium/id2.jpg"
+          "photo": "assets/img/consortium/id2.jpg"
         }
       ]
     },
@@ -37,19 +37,19 @@
       "shortName": "WUT",
       "country": "Poland",
       "role": "Coordinator",
-      "logo": "/assets/logo/Warsaw_logo.jpg",
+      "logo": "assets/logo/Warsaw_logo.jpg",
       "participants": [
         {
           "name": "Muhammad Ali Butt",
           "position": "Project Coordinator",
           "email": "ali.butt@pw.edu.pl",
-          "photo": "/assets/img/consortium/id3.jpg"
+          "photo": "assets/img/consortium/id3.jpg"
         },
         {
           "name": "Bartosz Janaszek",
           "position": "Research Scientist",
           "email": "Bartosz.Janaszek@pw.edu.pl",
-          "photo": "/assets/img/consortium/id4.jpg"
+          "photo": "assets/img/consortium/id4.jpg"
         }
       ]
     },
@@ -60,19 +60,19 @@
       "website": "https://www.urv.cat/",
       "shortName": "URV",
       "country": "Spain",
-      "logo": "/assets/logo/URV_logo.jpg",
+      "logo": "assets/logo/URV_logo.jpg",
       "participants": [
         {
           "name": "Xavier Mateos",
           "position": "Principal Investigator",
           "email": "xavier.mateos@urv.cat",
-          "photo": "/assets/img/consortium/id5.jpg"
+          "photo": "assets/img/consortium/id5.jpg"
         },
         {
           "name": "Mohammadali Zoljalali",
           "position": "Postdoctoral Researcher",
           "email": "mohammadali.zoljalali@urv.cat",
-          "photo": "/assets/img/consortium/id5.jpg"
+          "photo": "assets/img/consortium/id5.jpg"
         }
       ]
     },
@@ -83,25 +83,25 @@
       "website": "https://www.fraunhofer.de/en.html",
       "shortName": "FHI",
       "country": "Germany",
-      "logo": "/assets/logo/Fraunhofer-logo.png",
+      "logo": "assets/logo/Fraunhofer-logo.png",
       "participants": [
         {
           "name": "Tolga Tekin",
           "position": "Principal Investigator",
           "email": "tolga.tekin@izm.fraunhofer.de",
-          "photo": "/assets/img/consortium/id6.jpg"
+          "photo": "assets/img/consortium/id6.jpg"
         },
         {
           "name": "Martin Paulmichl",
           "position": "Principal Investigator",
           "email": "martin.paulmichl@zv.fraunhofer.de",
-          "photo": "/assets/img/consortium/id7.jpg"
+          "photo": "assets/img/consortium/id7.jpg"
         },
         {
           "name": "David Antonio Hernández",
           "position": "Principal Investigator",
           "email": "david.antonio.hernandez.solarte@izm.fraunhofer.de",
-          "photo": "/assets/img/consortium/id8.jpg"
+          "photo": "assets/img/consortium/id8.jpg"
         }
       ]
     },
@@ -113,7 +113,7 @@
       "shortName": "VE",
       "country": "Denmark",
       "role": "Coordinator",
-      "logo": "/assets/logo/vetembryo-logo_0.png",
+      "logo": "assets/logo/vetembryo-logo_0.png",
       "participants": [
         {
           "name": "Emma Lorenzen",
@@ -130,7 +130,7 @@
         "website": "https://www.nostics.com/",
         "shortName": "NO",
         "country": "Netherlands",
-        "logo": "/assets/logo/Nostics.jpg",
+        "logo": "assets/logo/Nostics.jpg",
         "participants": [
           {
             "name": "Isabell Trinh",
@@ -153,7 +153,7 @@
         "website": "https://www.4dcell.com/",
         "shortName": "4D",
         "country": "France",
-        "logo": "/assets/logo/4dcell_logo.jpg",
+        "logo": "assets/logo/4dcell_logo.jpg",
         "participants": [
           {
             "name": "Ana Rita Ribeiro",

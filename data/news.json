@@ -6,7 +6,7 @@
       "date": "2026-09-22",
       "title": "MBARC Kickoff Meeting",
       "summary": "Initial project meeting to discuss goals and objectives.",
-      "image": "/assets/img/news/meeting01.png",
+      "image": "assets/img/news/meeting01.png",
       "content": [
         "The M-BARC project (Microlaser Acoustic Sensors for Mechanical Barcoding of Cells and Particles) has officially launched with its online kickoff meeting",
         "Funded by Horizon Europe and coordinated by Vrije Universiteit Amsterdam, M-BARC brings together seven partners from six countries. Over 42 months, the consortium will develop a label-free platform that uses microring lasers to read the mechanical “barcode” of cells, with applications in IVF, antibiotic resistance and drug screening.",
