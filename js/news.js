@@ -4,7 +4,7 @@ console.log("NEWS JS FUNCIONA");
 
 console.log("NEWS JS FUNCIONA");
 
-fetch("/data/news.json")
+fetch("data/news.json")
     .then(response => response.json())
     .then(data => {
 

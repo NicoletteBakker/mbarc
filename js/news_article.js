@@ -8,7 +8,7 @@ const articleId =
 
 console.log(articleId);
 
-fetch("/data/news.json")
+fetch("data/news.json")
     .then(response => response.json())
     .then(data => {
 
@@ -41,7 +41,7 @@ fetch("/data/news.json")
             <article class="news-article">
 
                 <a
-                    href="/news.html"
+                    href="news.html"
                     class="back-news"
                 >
                     ← Back to News

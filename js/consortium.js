@@ -1,4 +1,4 @@
-fetch("/data/consortium.json")
+fetch("data/consortium.json")
     .then(response => response.json())
     .then(data => {
 
