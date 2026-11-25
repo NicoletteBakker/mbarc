@@ -1,0 +1,239 @@
+:root {
+    --bg-color: #020118;
+    --text-color: #F1FAEE;
+    --accent-color: #A8DADC; /* morado enlaces */
+    --title-accent: #4f59f2;
+    /* --title-eme: #2e39d7; azul #457B9D de la M */
+    --detail-color: #E63946; /* rojo detalles */
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html,
+body{
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+body {
+background-color: var(--bg-color);
+color: var(--text-color);
+font-family: system-ui, sans-serif;
+
+min-height: 100vh;
+
+margin: 0;
+}
+
+main,
+header,
+footer{
+    padding:0 2rem;
+}
+
+.logo{
+    width: clamp(60px, 8vw, 120px);
+    height: auto;
+
+    justify-self:start;
+
+    display:block;
+}
+
+header{
+    display:grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items:center;
+
+    min-height:100px;
+}
+
+.logo img{
+    height:clamp(60px,6vw,100px);
+    display: block;
+}
+
+nav{
+    justify-self:center;
+    
+    display: flex;
+    align-items: center;
+
+    margin-left: auto; /* empuja el menú a la derecha */
+}
+
+.eu-funded{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    color:white;
+    font-weight:700;
+    font-size:1.5rem;
+    line-height:1.1;
+    justify-self: end;
+}
+
+.eu-funded img{
+    height:clamp(45px, 5vw, 120px);
+    width:auto;
+    display:block;
+}
+
+.menu{
+    display:flex;
+    flex-wrap:nowrap;
+    justify-content:center;
+    gap:clamp(0.8rem,1vw,1.8rem);
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+
+    font-size: clamp(0.6rem, 0.5vw + 0.4rem, 1rem);
+    letter-spacing: clamp(1px, 0.15vw, 2px);
+
+    position: relative;
+    padding: 10px 0;
+}
+
+.menu a.active::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: 100%;
+    height: 3px;
+    background: #A3DE90;
+}
+
+.search{
+    margin-left: 40px;
+    padding-left: 30px;
+
+    border-left: 1px solid rgba(255,255,255,.2);
+
+    color: white;
+    font-size: 22px;
+}
+
+main{
+    flex:1;
+    border-top: 0.5px solid var(--detail-color);
+    border-bottom: 0.5px solid var(--detail-color);
+}
+
+.science-hero,
+.technology-hero,
+.usecases-hero,
+.consortium-hero,
+.news-hero{
+
+    text-align:center;
+
+    width:min(1200px,90vw);
+
+    margin:0 auto;
+
+    padding:1rem 0;
+}
+
+.science-hero h1,
+.technology-hero h1,
+.usecases-hero h1,
+.consortium-hero h1,
+.news-hero h1{
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    margin:1rem 0 .2rem 0;
+}
+
+.header,
+.footer {
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.page-title{
+
+    font-size:clamp(3rem,5vw,5.5rem);
+
+    line-height:.95;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+}
+
+.title-accent{
+    color: var(--title-accent);
+}
+
+.footer{
+    text-align: center;
+    font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.9rem);
+    padding:  1rem 0;
+    margin-top: 0rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p{
+    opacity:.85;
+    margin:0;
+}
+
+/* ===================================
+   HEADER RESPONSIVE
+=================================== */
+
+@media (max-width: 1300px){
+
+    .menu{
+        gap:0.5rem;
+    }
+
+    .menu a{
+
+        font-size:0.75rem;
+
+        letter-spacing:1px;
+    }
+
+    .eu-funded img{
+        height:90px;
+    }
+
+}
+
+@media (max-width: 1150px){
+
+    .menu{
+        gap:0.3rem;
+    }
+
+    .menu a{
+
+        font-size:0.65rem;
+
+        letter-spacing:0.5px;
+    }
+
+    .logo img{
+        height:70px;
+    }
+
+    .eu-funded img{
+        height:70px;
+    }
+
+}

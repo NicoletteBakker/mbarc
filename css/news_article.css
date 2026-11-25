@@ -1,0 +1,175 @@
+.news-article-hero{
+
+    width:min(1200px,90vw);
+
+    margin:0 auto;
+
+    text-align:center;
+
+    padding:2rem 0;
+}
+
+.news-article-hero h1{
+
+    font-size:clamp(2.8rem,4vw,4.2rem);
+
+    line-height:1;
+
+    margin-bottom:.75rem;
+}
+
+/* ==========================
+   CONTENEDOR DEL ARTÍCULO
+========================== */
+
+.news-article{
+
+    width:min(1000px,90vw);
+
+    margin:0 auto;
+
+    padding:1rem 0 4rem 0;
+
+    text-align:center;
+}
+
+/* ==========================
+   BOTÓN VOLVER
+========================== */
+
+.back-news{
+
+    display:inline-block;
+
+    padding:.75rem 1.5rem;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:999px;
+
+    color:rgba(255,255,255,.65);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    margin-bottom:3rem;
+}
+
+.back-news:hover{
+
+    transform:translateY(-2px);
+
+    background:rgba(248, 248, 248, 0.08);
+}
+
+/* ==========================
+   TIPO DE NOTICIA
+========================== */
+
+.article-type{
+
+    color:#A3DE90;
+
+    text-transform:uppercase;
+
+    letter-spacing:4px;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    margin-bottom:1rem;
+}
+
+/* ==========================
+   TÍTULO
+========================== */
+
+.news-article h1{
+
+    font-size:clamp(2.5rem,4vw,4rem);
+
+    line-height:1.1;
+
+    margin-bottom:1rem;
+}
+
+.article-title-m{
+
+    color:var(--title-accent);
+}
+
+/* ==========================
+   FECHA
+========================== */
+
+.article-date{
+
+    color:rgba(255,255,255,.6);
+
+    margin-bottom:2rem;
+}
+
+/* ==========================
+   IMAGEN
+========================== */
+
+.article-image{
+
+    width:100%;
+
+    max-height:400px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:0 auto 3rem auto;
+
+    border-radius:20px;
+}
+
+/* ==========================
+   CONTENIDO
+========================== */
+
+.article-content{
+
+    font-size:1.15rem;
+
+    line-height:2;
+
+    color:rgba(255,255,255,.9);
+}
+
+.article-content p{
+
+    margin-bottom:1.8rem;
+
+    text-align:justify;
+}
+
+/* ==========================
+   MÓVIL
+========================== */
+
+@media(max-width:768px){
+
+    .news-article{
+
+        width:95%;
+    }
+
+    .news-article h1{
+
+        font-size:2rem;
+    }
+
+    .article-content{
+
+        font-size:1rem;
+    }
+
+}
+

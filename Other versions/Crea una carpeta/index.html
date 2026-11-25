@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MBARC · Microlaser Acoustic Sensors for Mechanical Barcoding of Cells and Particles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+<header class="nav"><div class="wrap">
+<a class="logo" href="index.html" aria-label="MBARC home">MB<span>A</span>RC</a>
+<nav aria-label="Main">
+<a href="project.html">Project</a><a href="technology.html">Technology</a><a href="work-plan.html">Work plan</a><a href="consortium.html">Consortium</a><a href="contact.html">Contact</a>
+</nav>
+</div></header>
+
+<main id="main">
+<section id="v-home">
+<div class="wrap">
+<h1>Mechanical barcodes for cells</h1>
+<p class="full">Microlaser Acoustic Sensors for Mechanical Barcoding of Cells and Particles</p>
+<div class="spec">
+<div class="spec-top">
+<p id="specdesc">Each microlaser emits its own spectrum. Pick a cell to see its code.</p>
+<div class="chips" role="group" aria-label="Cell">
+<button aria-pressed="true" data-i="0">Cell A</button><button aria-pressed="false" data-i="1">Cell B</button><button aria-pressed="false" data-i="2">Cell C</button><button aria-pressed="false" data-i="3">Cell D</button>
+</div></div>
+<svg viewBox="0 0 800 190" role="img" aria-label="Microlaser emission spectrum converted into a barcode">
+<line x1="20" y1="120" x2="780" y2="120" stroke="#3a4d68"/>
+<g id="peaks"></g><g id="bars"></g>
+<text x="20" y="178" fill="#97a7bd" font-size="12" font-family="Instrument Sans,sans-serif">Wavelength</text>
+<text x="780" y="178" fill="#97a7bd" font-size="12" text-anchor="end" font-family="Instrument Sans,sans-serif">Resulting code</text>
+</svg>
+</div>
+<a class="cta" href="project.html">Discover the project</a>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap">
+<span>© 2026 MBARC Consortium</span>
+<span>Funded by the European Union</span>
+</div></footer>
+<script src="spectrum.js"></script>
+</body>
+</html>

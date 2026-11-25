@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MBARC · Microlaser Acoustic Sensors for Mechanical Barcoding of Cells and Particles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--surface:#fff;--ink:#0f1b2d;--muted:#52627a;--line:#d3dce7;--laser:#5b3fd9;--acoustic:#c7790a;--hero:#0f1b2d;--hero-ink:#eef2f6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1320;--surface:#121e30;--ink:#e8eef6;--muted:#97a7bd;--line:#26364d;--laser:#9b86ff;--acoustic:#f0a43a;--hero:#070d17;--hero-ink:#e8eef6}}
+:root[data-theme="dark"]{--bg:#0b1320;--surface:#121e30;--ink:#e8eef6;--muted:#97a7bd;--line:#26364d;--laser:#9b86ff;--acoustic:#f0a43a;--hero:#070d17;--hero-ink:#e8eef6}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laser);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font:800 22px "Bricolage Grotesque",sans-serif;text-decoration:none;letter-spacing:.02em}
+.logo span{color:var(--laser)}
+.nav nav{display:flex;gap:22px;font-size:15px;overflow-x:auto}
+.nav nav a{text-decoration:none;color:var(--muted);white-space:nowrap}
+.nav nav a:hover{color:var(--ink)}
+.hero{background:var(--hero);color:var(--hero-ink);padding:72px 0 56px}
+.hero h1{font-size:clamp(40px,8vw,92px);font-weight:800;letter-spacing:-.02em;max-width:14ch}
+.hero p.lead{font-size:clamp(18px,2.4vw,22px);max-width:56ch;color:#b8c5d8;margin:22px 0 0}
+.spec{margin-top:44px;border:1px solid #26364d;border-radius:6px;padding:20px 20px 14px;background:#0b1626}
+.spec svg{width:100%;height:auto;display:block}
+.spec-top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.spec-top p{margin:0;font-size:14px;color:#97a7bd;max-width:52ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{font:500 14px "Instrument Sans",sans-serif;color:#e8eef6;background:transparent;border:1px solid #3a4d68;border-radius:999px;padding:6px 14px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:#9b86ff;border-color:#9b86ff;color:#0b1320}
+section{padding:80px 0}
+section+section{border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4.5vw,44px);font-weight:700;max-width:22ch}
+.intro{max-width:62ch;color:var(--muted);margin:18px 0 0}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:40px;margin-top:44px}
+.three h3{font-size:21px;margin-bottom:8px}
+.three p{margin:0;color:var(--muted)}
+.three .bar{width:44px;height:4px;margin-bottom:16px}
+.steps{list-style:none;margin:44px 0 0;padding:0;display:grid;gap:0;border-left:2px solid var(--laser)}
+.steps li{padding:0 0 30px 28px;position:relative}
+.steps li::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--laser)}
+.steps h3{font-size:20px}
+.steps p{margin:6px 0 0;color:var(--muted);max-width:60ch}
+.wp{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:40px}
+.wp div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px}
+.wp b{font:700 14px "Bricolage Grotesque",sans-serif;color:var(--laser)}
+.wp h3{font-size:19px;margin:4px 0 6px}
+.wp p{margin:0;font-size:15px;color:var(--muted)}
+.partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:40px}
+.partners div{border:1px dashed var(--line);border-radius:8px;padding:26px 16px;text-align:center;color:var(--muted);font-size:15px}
+.partners strong{display:block;color:var(--ink);font-family:"Bricolage Grotesque",sans-serif;font-size:17px}
+.eu{display:flex;gap:18px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;margin-top:36px;font-size:14.5px;color:var(--muted);max-width:760px}
+.eu svg{flex:none;width:64px;height:auto}
+footer{background:var(--hero);color:#b8c5d8;padding:48px 0 calc(48px + env(safe-area-inset-bottom,0px));font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
+footer a{color:#e8eef6}
+@media (prefers-reduced-motion:no-preference){.peak{transition:all .5s ease}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" href="#top">MB<span>A</span>RC</a>
+<nav aria-label="Main"><a href="#proyecto">Project</a><a href="#tecnologia">Technology</a><a href="#trabajo">Work plan</a><a href="#consorcio">Consortium</a><a href="#contacto">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<h1>Mechanical barcodes for cells</h1>
+<p class="lead">MBARC develops microlaser-based acoustic sensors that identify cells and particles one by one by their mechanical signature, without chemical labels.</p>
+
+<div class="spec">
+<div class="spec-top">
+<p id="specdesc">Each microlaser emits its own spectrum. Pick a cell to see its code.</p>
+<div class="chips" role="group" aria-label="Cell">
+<button aria-pressed="true" data-i="0">Cell A</button><button aria-pressed="false" data-i="1">Cell B</button><button aria-pressed="false" data-i="2">Cell C</button><button aria-pressed="false" data-i="3">Cell D</button>
+</div></div>
+<svg viewBox="0 0 800 190" role="img" aria-label="Microlaser emission spectrum converted into a barcode" id="spec">
+<line x1="20" y1="120" x2="780" y2="120" stroke="#3a4d68"/>
+<g id="peaks"></g>
+<g id="bars"></g>
+<text x="20" y="178" fill="#97a7bd" font-size="12" font-family="Instrument Sans,sans-serif">Wavelength</text>
+<text x="780" y="178" fill="#97a7bd" font-size="12" text-anchor="end" font-family="Instrument Sans,sans-serif">Resulting code</text>
+</svg>
+</div>
+</div></div>
+
+<section id="proyecto"><div class="wrap">
+<h2>What MBARC is</h2>
+<p class="intro">Today, tracking individual cells within a sample requires labels that alter them or that blur together. MBARC proposes another route: using each cell's mechanical properties as its identity, read with laser light at the micrometre scale.</p>
+<div class="three">
+<div><div class="bar" style="background:var(--laser)"></div><h3>Microlasers</h3><p>Tiny resonators that emit light at very precise wavelengths, inside or next to the cell.</p></div>
+<div><div class="bar" style="background:var(--acoustic)"></div><h3>Acoustic sensing</h3><p>The cell's mechanical vibrations shift the laser spectrum and leave a measurable fingerprint.</p></div>
+<div><div class="bar" style="background:var(--ink)"></div><h3>Barcode</h3><p>That fingerprint becomes a unique code that lets you identify and follow each cell or particle.</p></div>
+</div>
+</div></section>
+
+<section id="tecnologia"><div class="wrap">
+<h2>How it works</h2>
+<p class="intro">The process has four stages, from sample to code.</p>
+<ol class="steps">
+<li><h3>Add the microlaser</h3><p>Cells or particles are coupled to microlasers that act as probes.</p></li>
+<li><h3>Excite with light</h3><p>An external optical pulse triggers laser emission and its spectrum is collected.</p></li>
+<li><h3>Record the mechanical response</h3><p>The cell's acoustic oscillations modulate the spectrum in a characteristic way.</p></li>
+<li><h3>Generate the code</h3><p>Spectral peaks are translated into a barcode that identifies each element.</p></li>
+</ol>
+</div></section>
+
+<section id="trabajo"><div class="wrap">
+<h2>Work plan</h2>
+<p class="intro">Provisional structure. Replace titles and descriptions with the project's actual work packages.</p>
+<div class="wp">
+<div><b>WP1</b><h3>Microlaser design</h3><p>Materials, geometry and fabrication of the probes.</p></div>
+<div><b>WP2</b><h3>Acoustic sensing</h3><p>Models and measurements of the mechanical response.</p></div>
+<div><b>WP3</b><h3>Encoding and analysis</h3><p>Algorithms to generate and read the codes.</p></div>
+<div><b>WP4</b><h3>Biological validation</h3><p>Tests on cell cultures and reference particles.</p></div>
+<div><b>WP5</b><h3>Dissemination and exploitation</h3><p>Communication, training and transfer of results.</p></div>
+<div><b>WP6</b><h3>Management</h3><p>Coordination, quality and ethics.</p></div>
+</div>
+</div></section>
+
+<section id="consorcio"><div class="wrap">
+<h2>Consortium</h2>
+<p class="intro">Research institutions and industry partners from several European countries.</p>
+<div class="partners">
+<div><strong>Coordinator</strong>Institution name</div>
+<div><strong>Partner 2</strong>Institution name</div>
+<div><strong>Partner 3</strong>Institution name</div>
+<div><strong>Partner 4</strong>Institution name</div>
+</div>
+<div class="eu">
+<svg viewBox="0 0 64 44" aria-hidden="true"><rect width="64" height="44" rx="3" fill="#2a4aa8"/><g fill="#f7d417"><circle cx="32" cy="9" r="2"/><circle cx="32" cy="35" r="2"/><circle cx="19" cy="22" r="2"/><circle cx="45" cy="22" r="2"/><circle cx="22.5" cy="12.5" r="2"/><circle cx="41.5" cy="12.5" r="2"/><circle cx="22.5" cy="31.5" r="2"/><circle cx="41.5" cy="31.5" r="2"/><circle cx="26" cy="10" r="0"/></g></svg>
+<p>This project has received funding from the European Union under the [programme name] programme, grant agreement No [number]. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union.</p>
+</div>
+</div></section>
+
+<section id="contacto"><div class="wrap">
+<h2>Contact</h2>
+<p class="intro">Want to collaborate or get project news? Write to us at <a href="mailto:contact@mbarc-project.eu"><strong>contact@mbarc-project.eu</strong></a>.</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<div><strong style="color:#e8eef6">MBARC</strong><br>Microlaser Acoustic Sensors for Mechanical Barcoding of Cells and Particles</div>
+<div>© 2026 MBARC Consortium<br><a href="#top">Back to top</a></div>
+</div></footer>
+
+<script>
+(function(){
+var cells=[
+ {p:[[110,.55],[220,.9],[300,.4],[470,.75],[620,.5]],n:"Cell A: five peaks, the tallest being the second."},
+ {p:[[90,.4],[190,.6],[350,.95],[430,.5],[560,.8],[700,.45]],n:"Cell B: six peaks, with the maximum at the third."},
+ {p:[[150,.85],[260,.5],[380,.7],[600,.9]],n:"Cell C: four widely spaced peaks."},
+ {p:[[100,.7],[170,.45],[240,.8],[330,.5],[520,.65],[660,.9],[740,.4]],n:"Cell D: seven peaks, the densest signature."}
+];
+var peaks=document.getElementById('peaks'),bars=document.getElementById('bars'),desc=document.getElementById('specdesc');
+var NS='http://www.w3.org/2000/svg';
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+function draw(i){
+ peaks.innerHTML='';bars.innerHTML='';
+ var d='M20 120';
+ cells[i].p.forEach(function(q){
+  var x=q[0],h=q[1]*100;
+  d+=' L'+(x-14)+' 120 Q'+x+' '+(120-h*2)+' '+(x+14)+' 120';
+  peaks.appendChild(el('line',{x1:x,x2:x,y1:120,y2:120-h,stroke:'#9b86ff','stroke-width':2,'stroke-opacity':.35}));
+ });
+ d+=' L780 120';
+ peaks.appendChild(el('path',{d:d,fill:'none',stroke:'#9b86ff','stroke-width':2.5,class:'peak'}));
+ cells[i].p.forEach(function(q){
+  bars.appendChild(el('rect',{x:q[0]-2+ (q[1]*6),y:136,width:2+q[1]*6,height:30,fill:'#f0a43a',class:'peak'}));
+ });
+ desc.textContent=cells[i].n;
+}
+var btns=document.querySelectorAll('.chips button');
+btns.forEach(function(b){b.addEventListener('click',function(){
+ btns.forEach(function(o){o.setAttribute('aria-pressed','false')});
+ b.setAttribute('aria-pressed','true');draw(+b.dataset.i);
+})});
+draw(0);
+})();
+</script>
+</body>
+</html>

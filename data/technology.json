@@ -1,0 +1,61 @@
+{
+  "sections": [
+    {
+      "number": 1,
+      "type": "patent",
+      "date": "2026",
+      "title": "MECHANICAL BARCODING",
+      "image": "/assets/img/technology/tech01.png",
+      "text": "M-BARC combines microlaser acoustic sensing and microfluidics to create a mechanical barcode for each analysed cell or particle.",
+      "highlights": [
+        "European patent application submitted",
+        "Unique acousto-optofluidic sensing method",
+        "Single-cell mechanical fingerprinting",
+        "Label-free operation",
+        "Scalable chip-based architecture"
+      ]
+    },
+    {
+      "number": 2,
+      "type": "technology-transfer",
+      "date": "2026",
+      "title": "END-USER VALIDATION",
+      "image": "/assets/img/AMR.jpeg",
+      "text": "The technology is being evaluated in real-world environments together with IVF clinics, microbiology laboratories and drug-screening facilities.",
+      "highlights": [
+        "Co-development with end users",
+        "Clinical validation workflows",
+        "Technology readiness advancement",
+        "Industrial exploitation pathway",
+        "Transfer towards routine laboratory use"
+      ]
+    },
+    {
+      "number": 2,
+      "type": "technology-transfer",
+      "date": "2026",
+      "title": "MECHANICAL BARCODING",
+      "image": "/assets/img/chip_biosensor.png",
+      "text": "At the heart of M-BARC is a new sensing platform that combines microlaser acoustic sensors with microfluidics. Cells and particles flow one by one through precisely engineered microchannels. As they pass, tiny lasers pick up the acoustic signals they produce and turn them into a mechanical barcode for each sample. The method needs no fluorescent labels or stains, leaves samples intact, and is designed for fast, high-throughput measurements on a single chip. Surface-chemistry treatments keep the channels stable and biocompatible. The platform is being tested with end users in IVF, clinical microbiology and drug screening, with the goal of making mechanical analysis a practical, everyday tool.",
+            "highlights": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "number": 3,
+      "type": "patent",
+      "title": "MECHANICAL BARCODING",
+      "image": "/assets/img/chip_biosensor.png",
+      "text": "At the heart of M-BARC is a new sensing platform that combines microlaser acoustic sensors with microfluidics. Cells and particles flow one by one through precisely engineered microchannels. As they pass, tiny lasers pick up the acoustic signals they produce and turn them into a mechanical barcode for each sample. The method needs no fluorescent labels or stains, leaves samples intact, and is designed for fast, high-throughput measurements on a single chip. Surface-chemistry treatments keep the channels stable and biocompatible. The platform is being tested with end users in IVF, clinical microbiology and drug screening, with the goal of making mechanical analysis a practical, everyday tool.",
+      "highlights": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+    ]
+}

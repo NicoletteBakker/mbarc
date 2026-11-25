@@ -1,0 +1,31 @@
+{
+  "useCases": [
+    {
+      "id": "ivf",
+      "number": 1,
+      "shortTitle": "IVF",
+      "title": "IN VITRO FERTILISATION",
+      "image": "/assets/img/IVF2.jpeg",
+      "summary": "Mechanical assessment of oocytes and embryos.",
+      "description": "Measuring the mechanical properties of oocytes and embryos gives an objective way to assess their quality and viability. This helps select the best embryos and improve the success rates of assisted reproduction."
+    },
+    {
+      "id": "amr",
+      "number": 2,
+      "shortTitle": "AMR",
+      "title": "ANTIMICROBIAL RESISTANCE",
+      "image": "/assets/img/AMR2.jpeg",
+      "summary": "Detecting bacterial drug resistance through mechanical signatures.",
+      "description": "Bacteria change their mechanical signature when exposed to antibiotics, revealing whether they are resistant. Reading these changes enables faster diagnostics and better-targeted treatment."
+    },
+    {
+      "id": "organoids",
+      "number": 3,
+      "shortTitle": "ORGANOIDS",
+      "title": "DRUG SCREENING ON SPHEROIDS & ORGANOIDS",
+      "image": "/assets/img/ORG2.jpeg",
+      "summary": "Monitoring responses to drugs in 3D cellular models.",
+      "description": "3D cell models change their mechanical “barcode”, such as their contractility, as they respond to drugs. Tracking these changes offers a label-free, high-throughput way to test drug effects."
+    }
+  ]
+}

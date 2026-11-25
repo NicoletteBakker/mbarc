@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBARC: Microlaser Acoustic Sensors for Mechanical Barcoding</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#131c2e',
+                        accentCyan: '#06b6d4',
+                        accentGreen: '#10b981',
+                        laserBlue: '#3b82f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
+        }
+        .laser-line {
+            background: linear-gradient(90deg, transparent, #06b6d4, #10b981, transparent);
+        }
+        /* Custom scrollbar for inner pages */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-accentCyan selection:text-darkBg min-h-screen flex flex-col justify-between">
+
+    <!-- Notification Custom Modal Box -->
+    <div id="customModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden">
+        <div class="bg-cardBg border border-cyan-500/30 rounded-2xl p-6 max-w-md w-full mx-4 shadow-2xl relative glow-cyan">
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-accentCyan">
+                    <i id="modalIcon" class="fa-solid fa-circle-check text-xl"></i>
+                </div>
+                <h3 id="modalTitle" class="text-xl font-bold text-white">Success</h3>
+            </div>
+            <p id="modalMessage" class="text-slate-300 mb-6 leading-relaxed">Action completed successfully.</p>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="bg-accentCyan hover:bg-cyan-400 text-darkBg font-semibold px-6 py-2 rounded-xl transition duration-200">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EU Funding Banner (Top) -->
+    <div class="bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 border-b border-cyan-500/20 py-2 px-4 text-xs sm:text-sm shrink-0">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center space-x-3">
+                <div class="flex space-x-1 items-center bg-blue-900/40 px-2 py-0.5 rounded border border-blue-500/30 text-yellow-400 font-bold">
+                    <span>🇪🇺</span>
+                    <span class="tracking-widest">EU HORIZON EUROPE</span>
+                </div>
+                <span class="text-slate-300">Grant Agreement No. 10115XXXX — EIC Pathfinder Research Initiative</span>
+            </div>
+            <div class="text-accentCyan font-medium whitespace-nowrap">
+                Call: HORIZON-CL4-2025-DIGITAL-EMERGING
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-darkBg/95 backdrop-blur-md border-b border-slate-800 shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accentCyan to-laserBlue flex items-center justify-center shadow-lg group-hover:scale-105 transition duration-200">
+                    <i class="fa-solid fa-wave-square text-darkBg text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight text-white">MBARC</span>
+                    <span class="block text-[10px] uppercase tracking-widest text-accentCyan">Microlaser Acoustics</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-link text-accentCyan transition">Home</button>
+                <button onclick="navigateTo('about')" id="nav-about" class="nav-link hover:text-accentCyan transition">About & Objectives</button>
+                <button onclick="navigateTo('technology')" id="nav-technology" class="nav-link hover:text-accentCyan transition">Technology</button>
+                <button onclick="navigateTo('workpackages')" id="nav-workpackages" class="nav-link hover:text-accentCyan transition">Work Packages</button>
+                <button onclick="navigateTo('consortium')" id="nav-consortium" class="nav-link hover:text-accentCyan transition">Consortium</button>
+                <button onclick="navigateTo('news')" id="nav-news" class="nav-link hover:text-accentCyan transition">News & Pubs</button>
+                <button onclick="navigateTo('contact')" id="nav-contact" class="nav-link hover:text-accentCyan transition">Contact</button>
+            </div>
+
+            <!-- CTA / Action button -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button onclick="navigateTo('contact')" class="bg-cyan-500/10 hover:bg-cyan-500/20 text-accentCyan border border-cyan-500/30 font-semibold px-4 py-2 rounded-xl transition duration-200 glow-cyan text-sm">
+                    Join Stakeholders
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cardBg border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <button onclick="navigateTo('home'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">Home</button>
+            <button onclick="navigateTo('about'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">About & Objectives</button>
+            <button onclick="navigateTo('technology'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">Technology</button>
+            <button onclick="navigateTo('workpackages'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">Work Packages</button>
+            <button onclick="navigateTo('consortium'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">Consortium</button>
+            <button onclick="navigateTo('news'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">News & Pubs</button>
+            <button onclick="navigateTo('contact'); toggleMobileMenu();" class="block w-full text-left py-2 text-slate-300 hover:text-accentCyan font-medium">Contact</button>
+        </div>
+    </nav>
+
+    <!-- MAIN APP VIEWS CONTAINER -->
+    <main class="flex-grow flex flex-col">
+
+        <!-- ================= PAGE 1: HOME (STRICTLY NO VERTICAL SCROLL: h-[calc(100vh-136px)] or similar fit) ================= -->
+        <div id="page-home" class="page-view flex flex-col justify-between h-[calc(100vh-130px)] overflow-hidden relative p-4 sm:p-8">
+            <!-- Background Glow Elements -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto relative z-10">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 rounded-full text-accentCyan text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-atom animate-spin"></i>
+                        <span>Horizon Europe Flagship Initiative</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Microlaser Acoustic Sensors for <span class="text-transparent bg-clip-text bg-gradient-to-r from-accentCyan to-accentGreen glow-text">Mechanical Barcoding</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Unlocking ultra-high throughput single-cell profiling through integrated photonics, advanced microfluidics, and opto-acoustic resonance signatures.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="navigateTo('about')" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-darkBg font-bold px-7 py-3.5 rounded-xl shadow-lg glow-cyan transition duration-200">
+                            Explore Objectives <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                        <button onclick="navigateTo('technology')" class="bg-cardBg hover:bg-slate-800 text-white font-semibold px-7 py-3.5 rounded-xl border border-slate-700 transition duration-200">
+                            View Technology
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Telemetry Card -->
+                <div class="lg:col-span-5 hidden sm:block">
+                    <div class="bg-cardBg/90 border border-cyan-500/30 rounded-3xl p-6 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 laser-line"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs uppercase tracking-widest text-accentCyan font-bold"><i class="fa-solid fa-microchip mr-2"></i>MBARC Live Telemetry</span>
+                            <span class="flex h-3 w-3 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            </span>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">Acoustic Resonance Freq.</span>
+                                    <span class="text-accentCyan font-mono font-bold">1.42 GHz</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-cyan-500 to-emerald-400 h-full w-3/4"></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">Cell Throughput Rate</span>
+                                    <span class="text-accentGreen font-mono font-bold">10,000 cells/s</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-full w-5/6"></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3">
+                                <div class="flex justify-between text-xs mb-1">
+                                    <span class="text-slate-400">Barcoding Fidelity</span>
+                                    <span class="text-blue-400 font-mono font-bold">99.87%</span>
+                                </div>
+                                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-blue-500 to-cyan-400 h-full w-11/12"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Footer mini disclaimer bar -->
+            <div class="max-w-7xl mx-auto w-full text-center text-xs text-slate-500 pb-2 relative z-10">
+                MBARC Project • Horizon Europe Grant Agreement No. 10115XXXX • EIC Pathfinder
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 2: ABOUT & OBJECTIVES ================= -->
+        <div id="page-about" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">About MBARC</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Revolutionizing Single-Cell Analysis</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    The MBARC project introduces a paradigm shift in cellular phenotyping by merging integrated whispering-gallery mode microlasers with high-frequency acoustic sensing.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-8 shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-accentCyan flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Label-Free Mechanics</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Probing elasticity, stiffness, and viscosity without chemical staining or genetic modification, preserving native cell viability.
+                    </p>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-8 shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-accentGreen flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">High Throughput</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Screening thousands of cells per second in microfluidic channels, exceeding current flow cytometry mechanical standards by 500%.
+                    </p>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-8 shadow-xl">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI Spectral Decoding</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Real-time convolutional neural networks translating optical wavelength shifts into unambiguous mechanical barcodes instantly.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objectives List -->
+            <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-6">Core Strategic Objectives</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start space-x-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-accentCyan flex items-center justify-center font-bold shrink-0 mt-1">1</div>
+                        <div>
+                            <h4 class="text-white font-semibold">Sub-Micron Cavity Engineering</h4>
+                            <p class="text-slate-400 text-sm mt-1">Fabricate high-Q optical microcavities with extreme sensitivity to acoustic pressure variations.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-accentCyan flex items-center justify-center font-bold shrink-0 mt-1">2</div>
+                        <div>
+                            <h4 class="text-white font-semibold">Acoustofluidic Integration</h4>
+                            <p class="text-slate-400 text-sm mt-1">Develop robust lab-on-a-chip architecture combining IDT acoustics and photonic readout channels.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-accentCyan flex items-center justify-center font-bold shrink-0 mt-1">3</div>
+                        <div>
+                            <h4 class="text-white font-semibold">Multiplexed Barcoding</h4>
+                            <p class="text-slate-400 text-sm mt-1">Assign optical-acoustic identity tags to individual cells for tracking in tumor heterogeneity studies.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+                        <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-accentCyan flex items-center justify-center font-bold shrink-0 mt-1">4</div>
+                        <div>
+                            <h4 class="text-white font-semibold">Clinical Validation</h4>
+                            <p class="text-slate-400 text-sm mt-1">Benchmark MBARC chips against standard gold-standard flow cytometry and AFM in medical trials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 3: TECHNOLOGY & MICROLASERS ================= -->
+        <div id="page-technology" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Technology</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Opto-Acoustic Resonance Architecture</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    Discover how MBARC couples whispering-gallery mode (WGM) microlasers with high-frequency surface acoustic waves.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-16">
+                <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
+                    <div class="flex items-center space-x-3 text-accentCyan">
+                        <i class="fa-solid fa-laser-pointer text-2xl"></i>
+                        <span class="font-bold text-lg">Whispering-Gallery Mode Cavities</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        Light circulates along the interior perimeter of ring or disk microresonators through total internal reflection. When a cell or particle passes near the evanescent field, minute mechanical deformations shift the resonant wavelength with sub-picometer precision.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><i class="fa-solid fa-check text-accentCyan mr-2"></i> Quality factor Q > 10^6</li>
+                        <li><i class="fa-solid fa-check text-accentCyan mr-2"></i> Silicon-on-Insulator & polymer platforms</li>
+                        <li><i class="fa-solid fa-check text-accentCyan mr-2"></i> Immune to electromagnetic interference</li>
+                    </ul>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 shadow-2xl space-y-6">
+                    <div class="flex items-center space-x-3 text-accentGreen">
+                        <i class="fa-solid fa-water text-2xl"></i>
+                        <span class="font-bold text-lg">Acoustofluidic Manipulation</span>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        Using interdigital transducers (IDTs) integrated into the microfluidic chip, acoustic radiation forces align, focus, and subject cells to controlled mechanical perturbations right at the optical sensing junction.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><i class="fa-solid fa-check text-accentGreen mr-2"></i> Frequency range: 500 MHz to 2 GHz</li>
+                        <li><i class="fa-solid fa-check text-accentGreen mr-2"></i> Laminar flow velocity control</li>
+                        <li><i class="fa-solid fa-check text-accentGreen mr-2"></i> Zero thermal damage to biological samples</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 4: WORK PACKAGES ================= -->
+        <div id="page-workpackages" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Work Packages</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Project Structure & Roadmap</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    Explore the 4 core technical work packages guiding MBARC from foundational nanofabrication to clinical trials.
+                </p>
+            </div>
+
+            <!-- WP Interactive Selector -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <button onclick="switchWP('wp1')" id="wbtn-wp1" class="wp-tab-btn p-4 rounded-2xl bg-cyan-500 text-darkBg font-bold text-sm shadow-lg glow-cyan text-center transition">
+                    WP1: Microlaser Design
+                </button>
+                <button onclick="switchWP('wp2')" id="wbtn-wp2" class="wp-tab-btn p-4 rounded-2xl bg-cardBg border border-slate-700 text-slate-300 font-bold text-sm text-center transition hover:bg-slate-800">
+                    WP2: Acoustofluidics
+                </button>
+                <button onclick="switchWP('wp3')" id="wbtn-wp3" class="wp-tab-btn p-4 rounded-2xl bg-cardBg border border-slate-700 text-slate-300 font-bold text-sm text-center transition hover:bg-slate-800">
+                    WP3: Barcoding AI
+                </button>
+                <button onclick="switchWP('wp4')" id="wbtn-wp4" class="wp-tab-btn p-4 rounded-2xl bg-cardBg border border-slate-700 text-slate-300 font-bold text-sm text-center transition hover:bg-slate-800">
+                    WP4: Clinical Trials
+                </button>
+            </div>
+
+            <!-- WP Content Box -->
+            <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl">
+                <!-- WP1 -->
+                <div id="wcont-wp1" class="wp-content space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-accentCyan text-xs uppercase tracking-widest font-bold">Work Package 1 • Months 1-18</span>
+                        <span class="bg-cyan-500/10 text-accentCyan px-3 py-1 rounded-full text-xs font-semibold">Lead: ETH Zurich</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Advanced Microlaser Fabrication & Cavity Optimization</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        Design and nanofabrication of high-Q whispering-gallery mode microlasers. This pillar focuses on optimizing resonance linewidths and tuning emission spectra to maximize sensitivity against acoustic pressure variations in cellular assays.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Key Deliverable: D1.2 - Prototype WGM Cavities</span>
+                        <span class="text-accentCyan font-semibold">Completed (Month 12)</span>
+                    </div>
+                </div>
+
+                <!-- WP2 -->
+                <div id="wcont-wp2" class="wp-content hidden space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-accentGreen text-xs uppercase tracking-widest font-bold">Work Package 2 • Months 12-30</span>
+                        <span class="bg-emerald-500/10 text-accentGreen px-3 py-1 rounded-full text-xs font-semibold">Lead: BioFluidics GmbH</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Acoustofluidic Integration & Particle Handling</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        Development of microfluidic channels integrated with interdigital transducers (IDTs) for precise acoustic focusing and single-cell alignment past the microlaser sensing nodes with minimal shear stress.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Key Deliverable: D2.2 - Acoustofluidic Chip v2</span>
+                        <span class="text-accentGreen font-semibold">In Progress (Month 24)</span>
+                    </div>
+                </div>
+
+                <!-- WP3 -->
+                <div id="wcont-wp3" class="wp-content hidden space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-blue-400 text-xs uppercase tracking-widest font-bold">Work Package 3 • Months 18-36</span>
+                        <span class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold">Lead: AI Lab & Tech Univ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">AI-Powered Spectral Decoding & Mechanical Barcoding</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        Implementation of real-time convolutional neural networks (CNNs) and deep signal processing pipelines to analyze optical wavelength shifts and translate them instantly into mechanical barcodes for thousands of cells per second.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Key Deliverable: D3.1 - Decoding Software Suite</span>
+                        <span class="text-blue-400 font-semibold">Upcoming</span>
+                    </div>
+                </div>
+
+                <!-- WP4 -->
+                <div id="wcont-wp4" class="wp-content hidden space-y-6">
+                    <div class="flex items-center justify-between">
+                        <span class="text-amber-400 text-xs uppercase tracking-widest font-bold">Work Package 4 • Months 30-48</span>
+                        <span class="bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full text-xs font-semibold">Lead: Karolinska Institute</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">Clinical Validation & Industrial Demonstration</h3>
+                    <p class="text-slate-300 leading-relaxed">
+                        Benchmarking the fully integrated MBARC device on live cancer cell lines and clinical blood samples against standard flow cytometry and atomic force microscopy.
+                    </p>
+                    <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Key Deliverable: D4.3 - Final Clinical Trial Report</span>
+                        <span class="text-amber-400 font-semibold">Scheduled Month 46</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 5: CONSORTIUM & PARTNERS ================= -->
+        <div id="page-consortium" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Consortium</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Pan-European Excellence</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    The MBARC consortium unites world-leading academic institutions, research centers, and industrial pioneers.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-accentCyan flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">ETH Zurich</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Switzerland • Academic Lead</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">CNRS Photonics</h4>
+                    <span class="text-xs text-slate-400 block mt-1">France • Research Center</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-accentGreen flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Fraunhofer IPM</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Germany • Applied Science</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-hospital"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Karolinska Institute</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Sweden • Medical Partner</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-industry"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">BioFluidics GmbH</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Germany • Industrial SME</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/15 text-pink-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">Polytechnic Milan</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Italy • Academic Partner</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-teal-500/15 text-teal-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">LaserCore Systems</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Netherlands • Industrial SME</span>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-6 text-center transition group">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/15 text-indigo-400 flex items-center justify-center mx-auto mb-4 text-xl group-hover:scale-110 transition">
+                        <i class="fa-solid fa-dna"></i>
+                    </div>
+                    <h4 class="text-white font-bold text-base">IMEC Belgium</h4>
+                    <span class="text-xs text-slate-400 block mt-1">Belgium • R&D Nanotech</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 6: NEWS & PUBLICATIONS ================= -->
+        <div id="page-news" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">News & Publications</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Latest Dissemination</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    Peer-reviewed publications, conference announcements, and symposia updates from the MBARC team.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="bg-cyan-500/10 text-accentCyan px-2.5 py-1 rounded-md font-semibold">Publication</span>
+                            <span>March 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">MBARC Breakthrough Published in Nature Photonics</h3>
+                        <p class="text-slate-400 text-sm">Demonstrating ultra-high Q microlaser resonance sensitivity in continuous acoustic microfluidic streams.</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-800">
+                        <button onclick="openModal('Publication', 'Access via DOI: 10.1038/s41566-026-0000-x (Open Access)')" class="text-accentCyan text-sm font-semibold hover:underline">Read Paper <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="bg-emerald-500/10 text-accentGreen px-2.5 py-1 rounded-md font-semibold">Workshop</span>
+                            <span>April 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Annual Consortium Symposium & Live Demo in Zurich</h3>
+                        <p class="text-slate-400 text-sm">Join us at ETH Zurich for mid-term review workshop featuring live laboratory demonstrations.</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-800">
+                        <button onclick="openModal('Registration', 'Registration link sent to registered stakeholders.')" class="text-accentGreen text-sm font-semibold hover:underline">Register Now <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+
+                <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span class="bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-md font-semibold">Conference</span>
+                            <span>June 2026</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">CLEO Europe Special Session on Optofluidics</h3>
+                        <p class="text-slate-400 text-sm">MBARC researchers hosting a dedicated symposium in Munich showcasing AI spectral decoding.</p>
+                    </div>
+                    <div class="pt-4 mt-4 border-t border-slate-800">
+                        <button onclick="openModal('CLEO Session', 'Room 4B, Munich Exhibition Center.')" class="text-accentCyan text-sm font-semibold hover:underline">View Schedule <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 7: CONTACT ================= -->
+        <div id="page-contact" class="page-view hidden py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <span class="text-accentCyan text-sm font-semibold uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">Contact Us</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">Project Coordination Office</h2>
+                <p class="text-slate-300 mt-4 leading-relaxed">
+                    Get in touch with our coordination team for industrial partnerships, stakeholder advisory boards, or academic inquiries.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-cardBg border border-slate-800 rounded-3xl p-8 shadow-xl space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-accentCyan flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">ETH Zurich</h4>
+                                <p class="text-slate-400 text-sm">Dept. of Biosystems Science & Engineering</p>
+                                <p class="text-slate-400 text-sm">Mattenstrasse 26, 4058 Basel, Switzerland</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-accentGreen flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Prof. Dr. Elena Vance</h4>
+                                <p class="text-slate-400 text-sm">Project Coordinator</p>
+                                <p class="text-accentCyan text-sm font-mono">coord@mbarc-horizon.eu</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Office Line</h4>
+                                <p class="text-slate-400 text-sm font-mono">+41 61 387 30 00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-cardBg border border-cyan-500/30 rounded-3xl p-8 shadow-2xl">
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+                                    <input type="text" required placeholder="Dr. Jane Doe" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accentCyan">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                                    <input type="email" required placeholder="jane.doe@institution.eu" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accentCyan">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Inquiry Type</label>
+                                <select class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accentCyan">
+                                    <option>Stakeholder & Advisory Board</option>
+                                    <option>Industrial Partnership</option>
+                                    <option>Academic Collaboration / Data Access</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                                <textarea rows="4" required placeholder="Type your message here..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accentCyan"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-darkBg font-bold py-4 rounded-xl shadow-lg glow-cyan transition">
+                                Send Message <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-darkBg border-t border-slate-800 py-6 text-xs shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-400">
+            <div>&copy; 2026 MBARC Consortium. All rights reserved. Funded by the European Union.</div>
+            <div class="flex space-x-6 text-base">
+                <a href="#" class="hover:text-accentCyan transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-accentCyan transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-accentCyan transition"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Single Page Navigation Script -->
+    <script>
+        function navigateTo(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            // Show target page
+            const target = document.getElementById('page-' + pageId);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+
+            // Update navbar link styles
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(l => {
+                l.classList.remove('text-accentCyan');
+                l.classList.add('hover:text-accentCyan');
+            });
+
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.remove('hover:text-accentCyan');
+                activeNav.classList.add('text-accentCyan');
+            }
+
+            // Scroll window to top when switching sub-pages
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Work Package tab switcher
+        function switchWP(wpId) {
+            const contents = document.querySelectorAll('.wp-content');
+            contents.forEach(c => c.classList.add('hidden'));
+
+            const buttons = document.querySelectorAll('.wp-tab-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-cyan-500', 'text-darkBg', 'glow-cyan');
+                b.classList.add('bg-cardBg', 'border', 'border-slate-700', 'text-slate-300');
+            });
+
+            document.getElementById('wcont-' + wpId).classList.remove('hidden');
+
+            const activeBtn = document.getElementById('wbtn-' + wpId);
+            activeBtn.classList.remove('bg-cardBg', 'border', 'border-slate-700', 'text-slate-300');
+            activeBtn.classList.add('bg-cyan-500', 'text-darkBg', 'glow-cyan');
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+        // Custom Modal functions
+        function openModal(title, message) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            openModal('Message Sent', 'Thank you for contacting the MBARC coordination office. A representative will respond within 48 hours.');
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>

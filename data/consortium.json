@@ -1,0 +1,167 @@
+{
+  "institutions": [
+    {
+      "id": "vu",
+      "name": "Vrije Universiteit Amsterdam",
+      "website": "https://www.vu.nl/en/",
+      "shortName": "VU",
+      "country": "Netherlands",
+      "role": "Coordinator",
+      "logo": "/assets/logo/VU_logo.png",
+      "participants": [
+        {
+          "name": "Imran Avci",
+          "position": "Project Coordinator",
+          "email": "b.i.avci@vu.nl",
+          "photo": "/assets/img/consortium/id1.jpg"
+        },
+        {
+          "name": "Mekky Zaidi",
+          "position": "Research Scientist",
+          "email": "s.m.zaidi@vu.nl",
+          "photo": "/assets/img/consortium/id2.jpg"
+        },
+        {
+          "name": "Abdusame O. N.Berish",
+          "position": "Research Scientist",
+          "email": "a.o.n.berish@vu.nl",
+          "photo": "/assets/img/consortium/id2.jpg"
+        }
+      ]
+    },
+
+        {
+      "id": "wut",
+      "name": "Warsaw University of Technology",
+      "website": "https://www.pw.edu.pl/engpw",
+      "shortName": "WUT",
+      "country": "Poland",
+      "role": "Coordinator",
+      "logo": "/assets/logo/Warsaw_logo.jpg",
+      "participants": [
+        {
+          "name": "Muhammad Ali Butt",
+          "position": "Project Coordinator",
+          "email": "ali.butt@pw.edu.pl",
+          "photo": "/assets/img/consortium/id3.jpg"
+        },
+        {
+          "name": "Bartosz Janaszek",
+          "position": "Research Scientist",
+          "email": "Bartosz.Janaszek@pw.edu.pl",
+          "photo": "/assets/img/consortium/id4.jpg"
+        }
+      ]
+    },
+
+    {
+      "id": "urv",
+      "name": "Universitat Rovira i Virgili",
+      "website": "https://www.urv.cat/",
+      "shortName": "URV",
+      "country": "Spain",
+      "logo": "/assets/logo/URV_logo.jpg",
+      "participants": [
+        {
+          "name": "Xavier Mateos",
+          "position": "Principal Investigator",
+          "email": "xavier.mateos@urv.cat",
+          "photo": "/assets/img/consortium/id5.jpg"
+        },
+        {
+          "name": "Mohammadali Zoljalali",
+          "position": "Postdoctoral Researcher",
+          "email": "mohammadali.zoljalali@urv.cat",
+          "photo": "/assets/img/consortium/id5.jpg"
+        }
+      ]
+    },
+
+    {
+      "id": "fhi",
+      "name": "Fraunhofer Institute for Reliability and Microintegration",
+      "website": "https://www.fraunhofer.de/en.html",
+      "shortName": "FHI",
+      "country": "Germany",
+      "logo": "/assets/logo/Fraunhofer-logo.png",
+      "participants": [
+        {
+          "name": "Tolga Tekin",
+          "position": "Principal Investigator",
+          "email": "tolga.tekin@izm.fraunhofer.de",
+          "photo": "/assets/img/consortium/id6.jpg"
+        },
+        {
+          "name": "Martin Paulmichl",
+          "position": "Principal Investigator",
+          "email": "martin.paulmichl@zv.fraunhofer.de",
+          "photo": "/assets/img/consortium/id7.jpg"
+        },
+        {
+          "name": "David Antonio Hernández",
+          "position": "Principal Investigator",
+          "email": "david.antonio.hernandez.solarte@izm.fraunhofer.de",
+          "photo": "/assets/img/consortium/id8.jpg"
+        }
+      ]
+    },
+
+      {
+      "id": "ve",
+      "name": "Vet Embryo",
+      "website": "https://www.vetembryo.com/",
+      "shortName": "VE",
+      "country": "Denmark",
+      "role": "Coordinator",
+      "logo": "/assets/logo/vetembryo-logo_0.png",
+      "participants": [
+        {
+          "name": "Emma Lorenzen",
+          "position": "Project Coordinator",
+          "email": "el@vetembryo.dk",
+          "photo": ""
+        }
+      ]
+    },
+
+      {
+        "id": "no",
+        "name": "Nostics",
+        "website": "https://www.nostics.com/",
+        "shortName": "NO",
+        "country": "Netherlands",
+        "logo": "/assets/logo/Nostics.jpg",
+        "participants": [
+          {
+            "name": "Isabell Trinh",
+            "position": "Principal Investigator",
+            "email": "isabell.trinh@nostics.com",
+            "photo": ""
+          },
+          {
+            "name": "Giulia Pilla",
+            "position": "Principal Investigator",
+            "email": "giulia.pilla@nostics.com",
+            "photo": ""
+          }
+        ]
+      },
+
+      {
+        "id": "4d",
+        "name": "4D Cell",
+        "website": "https://www.4dcell.com/",
+        "shortName": "4D",
+        "country": "France",
+        "logo": "/assets/logo/4dcell_logo.jpg",
+        "participants": [
+          {
+            "name": "Ana Rita Ribeiro",
+            "position": "Principal Investigator",
+            "email": "ana-rita.ribeiro@4dcell.com",
+            "photo": ""
+          }
+        ]
+      }
+  ]
+}
